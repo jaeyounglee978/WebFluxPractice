@@ -1,0 +1,5 @@
+server:
+  port: 9999
+
+askme:
+  database: askme_test
