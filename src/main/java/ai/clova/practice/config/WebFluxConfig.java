@@ -9,15 +9,21 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import ai.clova.practice.handler.HelloHandler;
+import ai.clova.practice.handler.FunctionalHandler;
+import ai.clova.practice.handler.GetHandler;
 
 @Configuration
 @EnableWebFlux
 public class WebFluxConfig implements WebFluxConfigurer {
 	@Bean
-	public RouterFunction<ServerResponse> helloRouter(HelloHandler helloHandler) {
-		return RouterFunctions.route(RequestPredicates.GET("/hello"), helloHandler::handleDefaultRequest)
-							  .andRoute(RequestPredicates.GET("/hello2"), helloHandler::handleMoreRequest)
-							  .andRoute(RequestPredicates.GET("/add"), helloHandler::handleAddingWorkers);
+	public RouterFunction<ServerResponse> helloRouter(FunctionalHandler helloHandler) {
+		return RouterFunctions.route(RequestPredicates.GET("/functional/1"), helloHandler::handleDefaultRequest)
+							  .andRoute(RequestPredicates.GET("/functional/json"), helloHandler::getJson)
+							  .andRoute(RequestPredicates.GET("/functional/{pathVar}"), helloHandler::handleMoreRequest);
+	}
+
+	@Bean
+	RouterFunction<ServerResponse> accumulateRouter(GetHandler getHandler) {
+		return RouterFunctions.route(RequestPredicates.GET("/getData"), getHandler::getLaborTimeDiff);
 	}
 }

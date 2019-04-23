@@ -1,5 +1,4 @@
-server:
-  port: 9999
-
-askme:
-  database: askme_test
+mongodb:
+  mongo-test:
+    database: test
+    uri: mongodb://localhost:27017/worker
