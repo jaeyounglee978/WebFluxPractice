@@ -4,4 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "backEndWorker")
 public class BackEndWorker extends Worker {
+	public static BackEndWorker generateBackEndWorker() {
+		return new BackEndWorker();
+	}
 }
