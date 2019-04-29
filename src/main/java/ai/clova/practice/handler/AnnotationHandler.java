@@ -104,7 +104,7 @@ public class AnnotationHandler {
 		return Flux.range(0, 300)
 				   .map(i -> {
 					   FrontEndWorker newWorker = new FrontEndWorker();
-					   frontEndWorkerRepository.insert(newWorker);
+					   frontEndWorkerRepository.insert(newWorker).subscribe();
 					   return newWorker;
 				   });
 	}
